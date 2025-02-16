@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "HeapStackExample.h"
 
 using namespace std;
@@ -28,11 +29,46 @@ void HeapTest()
 	orange->ShowPrice();
 }
 
+// 2025.02.17
+// vector를 이용해서 중복 방지를 하였습니다.
+vector<int> AvoidDuplicate(vector<int> arr) {
+	vector<int> answer;
+
+	answer.push_back(arr[0]);
+
+	for (int i = 1, j = 0; i < arr.size(); i++)
+	{
+		if (arr[i] == answer[j])
+		{
+			continue;
+		}
+		else
+		{
+			answer.push_back(arr[i]);
+			j++;
+		}
+	}
+	return answer;
+}
+
 int main()
 {
-	StackTest();
+	vector<int> previousVector;
+	vector<int> afterVector;
 
-	HeapTest();
+	for (int i = 0; i < 6; i++)
+	{
+		int a;
+		cin >> a;
+		previousVector.push_back(a);
+	}
+
+	afterVector = AvoidDuplicate(previousVector);
+	
+	for (int i = 0; i < afterVector.size(); i++)
+	{
+		cout << afterVector[i] << endl;
+	}
 
 	return 0;
 }
