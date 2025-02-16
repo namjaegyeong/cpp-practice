@@ -2,10 +2,39 @@
 //
 
 #include <iostream>
+#include "HeapStackExample.h"
+
+using namespace std;
+
+// 2025.02.16
+// C++에서는 객체 생성 방법이 두 가지 있습니다.
+// StackTest() 함수처럼 객체를 생성한다면, Stack 영역에 객체를 할당한 것으로 함수 내에서만 사용 가능합니다.
+// 별도의 소멸자를 호출하지 않았음에도 자동으로 소멸자가 호출됩니다. 
+void StackTest()
+{
+	cout << "*** StackTest Orange orange(500); ***" << endl;
+	Orange orange(500);
+	orange.ShowPrice();
+}
+
+// 2025.02.16
+// new 키워드가 동적으로 힙 영역에 메모리를 동적으로 할당합니다. (C의 malloc 과 비슷한 맥락입니다.)
+// 일반적으로 동적으로 할당된 메모리는 delete 하기 전까지 힙에 생존합니다.
+// 따라서 함수가 종료되어도, 소멸자가 호출되지 않습니다.
+void HeapTest()
+{
+	cout << "*** HeapTest Orange *orange = new Orange(1000); ***" << endl;
+	Orange* orange = new Orange(1000);
+	orange->ShowPrice();
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	StackTest();
+
+	HeapTest();
+
+	return 0;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
