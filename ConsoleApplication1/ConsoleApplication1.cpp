@@ -51,10 +51,32 @@ vector<int> AvoidDuplicate(vector<int> arr) {
 	return answer;
 }
 
+// 2025.02.18
+// 버블 정렬을 하였습니다.
+vector<int> BubbleSort(vector<int> arr, int size) {
+	int temp;
+
+	for (int i = size - 1; i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (arr[j] > arr[j+1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = temp;
+			}
+		}
+	}
+
+	return arr;
+}
+
 int main()
 {
 	vector<int> previousVector;
 	vector<int> afterVector;
+	vector<int> finalVector;
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -68,6 +90,13 @@ int main()
 	for (int i = 0; i < afterVector.size(); i++)
 	{
 		cout << afterVector[i] << endl;
+	}
+
+	finalVector = BubbleSort(afterVector, 5);
+	
+	for (int i = 0; i < finalVector.size(); i++)
+	{
+		cout << finalVector[i] << endl;
 	}
 
 	return 0;
