@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "HeapStackExample.h"
+
+#define MAX 5
 
 using namespace std;
 
@@ -72,32 +75,83 @@ vector<int> BubbleSort(vector<int> arr, int size) {
 	return arr;
 }
 
+// 2025.02.18
+void ExploreMapData()
+{
+	int customMap[MAX][MAX] = { 0, };
+	int cnt = 0;
+	int dx[4] = { 0, 0, -1, 1 };
+	int dy[4] = { 1, 0, -1, 0 };
+
+	customMap[2][1] = 1;
+	customMap[3][1] = 1;
+
+	// 맵에 숨겨져 있는 물건을 출력합니다.
+	for (int i = 0; i < MAX; i++)
+	{
+		for (int j = 0; j < MAX; j++)
+		{
+			printf("%d", customMap[i][j]);
+		}
+		printf("\n");
+	}
+
+	// 맵에 숨겨져 있는 아이템들을 탐색하고, 발견하면 cnt 를 증가시킵니다.
+	for (int x = 0; x < MAX; x++)
+	{
+		for (int y = 0; y < MAX; y++)
+		{
+			if (customMap[x][y] != 0) continue;
+
+			for (int k = 0; k < 4; k++)
+			{
+				int nx = x + dx[k];
+				int ny = y + dy[k];
+
+				if (nx < 0 || ny < 0 || nx >= MAX || ny >= MAX) 
+					continue;
+				else {
+					if (customMap[nx][ny] == 1) {
+						cnt++;
+						customMap[nx][ny] = 0; 
+					}
+				}
+			}
+		}
+	}
+
+	cout << cnt << endl;
+}
+
+
 int main()
 {
-	vector<int> previousVector;
-	vector<int> afterVector;
-	vector<int> finalVector;
+	//vector<int> previousVector;
+	//vector<int> afterVector;
+	//vector<int> finalVector;
 
-	for (int i = 0; i < 6; i++)
-	{
-		int a;
-		cin >> a;
-		previousVector.push_back(a);
-	}
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	int a;
+	//	cin >> a;
+	//	previousVector.push_back(a);
+	//}
 
-	afterVector = AvoidDuplicate(previousVector);
-	
-	for (int i = 0; i < afterVector.size(); i++)
-	{
-		cout << afterVector[i] << endl;
-	}
+	//afterVector = AvoidDuplicate(previousVector);
+	//
+	//for (int i = 0; i < afterVector.size(); i++)
+	//{
+	//	cout << afterVector[i] << endl;
+	//}
 
-	finalVector = BubbleSort(afterVector, 5);
-	
-	for (int i = 0; i < finalVector.size(); i++)
-	{
-		cout << finalVector[i] << endl;
-	}
+	//finalVector = BubbleSort(afterVector, 5);
+	//
+	//for (int i = 0; i < finalVector.size(); i++)
+	//{
+	//	cout << finalVector[i] << endl;
+	//}
+
+	ExploreMapData();
 
 	return 0;
 }
