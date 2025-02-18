@@ -123,6 +123,23 @@ void ExploreMapData()
 	cout << cnt << endl;
 }
 
+// 2025.02.19
+// vector<string>으로 선언한 후에 row, column 사이즈를 확인하였습니다.
+void DeclareVector()
+{
+	vector<string> maps;
+
+	maps.push_back("X591X");
+	maps.push_back("X1X5X");
+	maps.push_back("X231X");
+	maps.push_back("1XXX1");
+
+	int rowSize = maps.size();
+	int colSize = maps[0].size();
+
+	cout << rowSize << endl;
+	cout << colSize << endl;
+}
 
 int main()
 {
@@ -151,7 +168,9 @@ int main()
 	//	cout << finalVector[i] << endl;
 	//}
 
-	ExploreMapData();
+	//ExploreMapData();
+
+	//DeclareVector();
 
 	return 0;
 }
