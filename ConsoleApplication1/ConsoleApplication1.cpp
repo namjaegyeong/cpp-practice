@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "HeapStackExample.h"
+#include "MyQueue.h"
 
 #define MAX 5
 
@@ -141,6 +142,39 @@ void DeclareVector()
 	cout << colSize << endl;
 }
 
+// 2025.03.01
+// Queue 테스트를 진행합니다.
+// Queue는 여러 개의 Node로 이루어져 있으며, 시작 지점의 Node와 끝 지점의 Node에 대해서 Pointer를 사용합니다.
+// GetFront 와 GetEnd 는 해당 Pointer 가 존재하면, 해당 Pointer에 담겨진 데이터를 printf 합니다.
+void QueueTest()
+{
+	MyQueue<int> queue;
+
+	queue.EnQueue(1);
+	queue.EnQueue(2);
+	queue.EnQueue(3);
+	queue.EnQueue(4);
+	queue.EnQueue(5);
+
+	printf("Front : %d\n", queue.GetFront());
+	printf("End : %d\n", queue.GetEnd());
+	printf("Size : %d\n\n", queue.GetSize());
+
+	int nDeq = queue.DeQueue();
+	printf("Dequeue : %d\n", nDeq);
+	printf("Front : %d\n", queue.GetFront());
+	printf("End : %d\n", queue.GetEnd());
+	printf("Size : %d\n\n", queue.GetSize());
+
+	printf("Enqueue(10)\n");
+	queue.EnQueue(10);
+	printf("Front : %d\n", queue.GetFront());
+	printf("End : %d\n", queue.GetEnd());
+	printf("Size : %d\n\n", queue.GetSize());
+
+	queue.Clear();
+}
+
 int main()
 {
 	//vector<int> previousVector;
@@ -171,6 +205,8 @@ int main()
 	//ExploreMapData();
 
 	//DeclareVector();
+
+	QueueTest();
 
 	return 0;
 }
