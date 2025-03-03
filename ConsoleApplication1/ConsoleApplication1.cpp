@@ -124,6 +124,57 @@ void ExploreMapData()
 	cout << cnt << endl;
 }
 
+// 2025/03/04
+// 백준 숫자 정사각형 (브루트 포스 알고리즘) 문제입니다.
+// 시간 초과를 방지하기 위해서 ios::sync_with_stdio(false), cin.tie(0) 를 사용합니다.
+// 배열 안에 정사각형을 찾는 것이기 때문에, 행 개수와 열 개수 중에 min 값을 이용해서 정사각형을 찾습니다.
+void FindSquare()
+{
+	int N, M;
+	int arr[50][50];
+	string input;
+
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+
+	int i, j, ans;
+
+	cin >> N >> M;
+
+	for (i = 0; i < N; i++)
+	{
+		cin >> input;
+		for (j = 0; j < M; j++)
+		{
+			arr[i][j] = input[j] - '0';
+		}
+	}
+
+	int len, Max_len = min(N, M);
+
+	int a, b, c, d;
+
+	for (len = 1; len <= Max_len; len++)
+	{
+		for (i = 0; i <= N - len; i++)
+		{
+			for (j = 0; j <= M - len; j++)
+			{
+				a = arr[i][j];
+				b = arr[i + len - 1][j];
+				c = arr[i][j + len - 1];
+				d = arr[i + len - 1][j + len - 1];
+
+				if (a == b && b == c && c == d)
+					ans = len;
+			}
+		}
+	}
+
+	cout << ans * ans;
+}
+
 // 2025.02.19
 // vector<string>으로 선언한 후에 row, column 사이즈를 확인하였습니다.
 void DeclareVector()
@@ -206,7 +257,9 @@ int main()
 
 	//DeclareVector();
 
-	QueueTest();
+	//QueueTest();
+
+	FindSquare();
 
 	return 0;
 }
