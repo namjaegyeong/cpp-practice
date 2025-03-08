@@ -226,6 +226,44 @@ void QueueTest()
 	queue.Clear();
 }
 
+// 2025.03.08
+// 브루트 포스를 이용한 블랙잭 문제입니다.
+void Blackjack()
+{
+	int N;
+	int M;
+	
+	int array[100];
+
+	std::cin >> N >> M;
+
+	for (int i = 0; i < N; i++)
+	{
+		std::cin >> array[i];
+	}
+
+	int sum;
+	int min = 0;
+
+	for (int i = 0; i < N - 2; i++)
+	{
+		for (int j = i + 1; j < N - 1; j++)
+		{
+			for (int k = j + 1; k < N; k++)
+			{
+				sum = array[i] + array[j] + array[k];
+
+				if (sum <= M && min < sum)
+				{
+					min = sum;
+				}
+			}
+		}
+	}
+
+	std::cout << min << std::endl;
+}
+
 int main()
 {
 	//vector<int> previousVector;
@@ -259,7 +297,9 @@ int main()
 
 	//QueueTest();
 
-	FindSquare();
+	//FindSquare();
+
+	Blackjack();
 
 	return 0;
 }
